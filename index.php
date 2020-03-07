@@ -24,13 +24,20 @@ $plan = $planAll->allPlan();
     <?php foreach ($plan as $p): ?>
       <li id="<?= h($p->id);?>" data-id="<?= h($p->id); ?>">
         <input type="checkbox" class="update" <?php if ($p->state === '1') {echo 'checked';}?>>
-        <p class="title <?php if ($p->state === '1') {echo 'done';}?>"><?= h($p->title); ?></p>
+        <p class="title <?php if ($p->state === '1') {echo 'finished';}?>"><?= h($p->title); ?></p>
         <div class="cross">x</div>
       </li>
     <?php endforeach; ?>
+    <li id="addingPlan" data-id="">
+      <input type="checkbox" class="update <?php if ($p->state === '1') {echo 'checked';}?>">
+      <p class="title <?php if ($p->state === '1') {echo 'finished';}?>"></p>
+      <div class="cross">x</div>
+    <li>
+    <ul id="finalPlan">
+    </ul>
   </ul>
-  <form action="">
-    <input type="text" placeholder="予定を入力してください">
+  <form action="" id="form">
+    <input type="text" placeholder="予定を入力してください" id="text">
     <input type="hidden" id="token" value="<?= h($_SESSION['token']);?>">
     <input type="submit" value="送信する">
   </form>

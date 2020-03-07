@@ -33,6 +33,7 @@ class Plan {
   }
 
   public function send() {
+    $this->checkToken();
     if(!isset($_POST['way'])) {
       throw new \Exception('通信に失敗しました');
     }
@@ -45,6 +46,33 @@ class Plan {
       case 'delete':
         return $this->delete();
     }
+  }
+
+  private function create() {
+    if(!isset($_POST['todo']) || $_POST['todo'] === '') {
+      throw new \Exception('IDがセットされていません');
+    }
+
+    $sql = "INSERT into todos (title, state) values (:title, :state)";
+    $create = $this->pdo->prepare($create);
+    $create->bindValue(':title', $_POST['todo'], \PDO::PARAM_STR);
+    $create->bindValue(':state', 0, \PDO::PARAM_INT);
+    $create->execute();
+
+    return [
+      'id' => $this->pdo->lastInsertId()
+    ];
+  }
+
+  private function delete() {
+    if(!isset($_POST['id'])) {
+      throw new \Exception('IDがセットされていません');
+    }
+    $sql = sprintf("delete from todos where id = %d", $_POST['id']);
+    $delete = $this->pdo->prepare($delete);
+    $delete->execute();
+
+    return[];
   }
 
   private function update() {
