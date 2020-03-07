@@ -25,14 +25,16 @@ $plan = $planAll->allPlan();
  </div>
  
   <ul id="planAll">
+    <div class="todoNow">
     <?php foreach ($plan as $p): ?>
-      <li id="<?= h($p->id);?>" data-id="<?= h($p->id); ?>">
+      <li id="<?= h($p->id);?>" data-id="<?= h($p->id); ?>" class="all">
         <input type="checkbox" class="update" <?php if ($p->state === '1') {echo 'checked';}?>>
         <p class="title <?php if ($p->state === '1') {echo 'finished';}?>"><?= h($p->title); ?></p>
         <div class="cross">x</div>
       </li>
     <?php endforeach; ?>
-    <li id="addingPlan" data-id="">
+    </div>
+    <li id="addingPlan" data-id="" class="all">
       <input type="checkbox" class="update" <?php if ($p->state === '1') {echo 'checked';}?>>
       <p class="title <?php if ($p->state === '1') {echo 'finished';}?>"></p>
       <div class="cross">x</div>

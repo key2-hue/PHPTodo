@@ -1,7 +1,7 @@
 $(function() {
   
   $('.update').on('click', function() {
-    var id = $(this).parents('li').data('id');
+    var id = $(this).parents('li').attr('id');
     console.log(id);
     $.post('ajax.php', {
       id: id,
@@ -32,7 +32,7 @@ $(function() {
   });
 
   $('#form').on('submit', function() {
-    $('#planAll > li').fadeIn(1000)
+    
     var todo = $('#text').val();
     $.post('ajax.php', {
       todo: todo,
@@ -41,8 +41,8 @@ $(function() {
     }, function(res) {
       var li = $('#addingPlan').clone();
       li.attr('id', res.id).data('id', res.id).find('.title').text(todo);
-      li.css({'display':'block'});
-      $('#finalPlan').append(li.fadeIn());
+      console.log(res.id);
+      $('.todoNow').append(li.fadeIn());
       $('#text').val('').focus();
     });
     return false;
@@ -54,8 +54,9 @@ $(function() {
         way: 'deleteAll',
         token: $('#token').val()
       }, function(res) {
-        $('#planAll > li').fadeOut(1000);
-        
+        $('.todoNow > li').fadeOut(1000, function() {
+          $('.todoNow > li').remove(1000);
+        });
       });
     }
   });
