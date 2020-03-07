@@ -32,6 +32,7 @@ $(function() {
   });
 
   $('#form').on('submit', function() {
+    $('#planAll > li').fadeIn(1000)
     var todo = $('#text').val();
     $.post('ajax.php', {
       todo: todo,
@@ -40,6 +41,7 @@ $(function() {
     }, function(res) {
       var li = $('#addingPlan').clone();
       li.attr('id', res.id).data('id', res.id).find('.title').text(todo);
+      li.css({'display':'block'});
       $('#finalPlan').append(li.fadeIn());
       $('#text').val('').focus();
     });
@@ -51,7 +53,7 @@ $(function() {
       $.post('ajax.php', {
         way: 'deleteAll',
         token: $('#token').val()
-      }, function() {
+      }, function(res) {
         $('#planAll > li').fadeOut(1000);
         
       });

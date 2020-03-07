@@ -45,7 +45,7 @@ class Plan {
         return $this->create();
       case 'delete':
         return $this->delete();
-      case 'deleteAll';
+      case 'deleteAll':
         return $this->deleteAll();
     }
   }
@@ -78,11 +78,11 @@ class Plan {
   }
 
   private function deleteAll() {
-    $sql = "delete from todos";
+    $sql = "truncate table todos";
     $delete = $this->pdo->prepare($sql);
     $delete->execute();
 
-    return[];
+    return $sql;
   }
 
   private function update() {
