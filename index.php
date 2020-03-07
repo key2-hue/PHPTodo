@@ -19,16 +19,13 @@ $plan = $planAll->allPlan();
  <div id="plans">
  <h1>予定一覧</h1>
   <ul>
-    <li>
-      <input type="checkbox">
-      <p>todo1</p>
-      <div>x</div>
-    </li>
-    <li>
-      <input type="checkbox" checked>
-      <p>todo2</p>
-      <div>x</div>
-    </li>
+    <?php foreach ($plan as $p): ?>
+      <li>
+        <input type="checkbox" <?php if ($p->state === '1') {echo 'checked';}?>>
+        <p class="<?php if ($p->state === '1') {echo 'done';}?>"><?= h($p->title); ?></p>
+        <div class="cross">x</div>
+      </li>
+    <?php endforeach; ?>
   </ul>
   <form action="">
     <input type="text" placeholder="予定を入力してください">

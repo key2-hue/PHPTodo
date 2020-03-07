@@ -16,8 +16,8 @@ class Plan {
   }
 
   public function allPlan() {
-    $sql = 'SELECT title FROM todos';
+    $sql = 'SELECT * FROM todos ORDER BY id asc';
     $plans = $this->pdo->query($sql);
-    return $plans;
+    return $plans->fetchAll(\PDO::FETCH_OBJ);
   }
 }
