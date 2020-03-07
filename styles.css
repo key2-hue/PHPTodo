@@ -1,0 +1,21 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#plans {
+  width: 300px;
+  margin: 40px auto 0; 
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  display: flex;
+}
+
+p {
+  margin:0;
+}
