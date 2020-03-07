@@ -45,6 +45,8 @@ class Plan {
         return $this->create();
       case 'delete':
         return $this->delete();
+      case 'deleteAll';
+        return $this->deleteAll();
     }
   }
 
@@ -53,8 +55,8 @@ class Plan {
       throw new \Exception('IDがセットされていません');
     }
 
-    $sql = "INSERT into todos (title, state) values (:title, :state)";
-    $create = $this->pdo->prepare($create);
+    $sql = "insert into todos (title, state) values (:title, :state)";
+    $create = $this->pdo->prepare($sql);
     $create->bindValue(':title', $_POST['todo'], \PDO::PARAM_STR);
     $create->bindValue(':state', 0, \PDO::PARAM_INT);
     $create->execute();
@@ -69,7 +71,15 @@ class Plan {
       throw new \Exception('IDがセットされていません');
     }
     $sql = sprintf("delete from todos where id = %d", $_POST['id']);
-    $delete = $this->pdo->prepare($delete);
+    $delete = $this->pdo->prepare($sql);
+    $delete->execute();
+
+    return[];
+  }
+
+  private function deleteAll() {
+    $sql = "delete from todos";
+    $delete = $this->pdo->prepare($sql);
     $delete->execute();
 
     return[];
@@ -82,13 +92,15 @@ class Plan {
 
     $this->pdo->beginTransaction();
 
-    $sql = sprintf("UPDATE todos SET state = (state + 1) %% 2 WHERE id = %d", $_POST['id']);
+    $sql = sprintf("update todos set state = (state + 1) %% 2 WHERE id = %d", $_POST['id']);
     $good = $this->pdo->prepare($sql);
     $good->execute();
 
-    $sql = sprintf("SELECT state FROM todos where id = %d", $_POST['id']);
+    $sql = sprintf("select state from todos where id = %d", $_POST['id']);
     $good = $this->pdo->query($sql);
     $state = $good->fetchColumn();
+
+    $this->pdo->commit();
 
     return [
       'state' => $state

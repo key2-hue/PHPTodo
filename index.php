@@ -19,7 +19,11 @@ $plan = $planAll->allPlan();
 </head>
 <body>
  <div id="plans">
- <h1>予定一覧</h1>
+ <div class="planList">
+  <h1>予定一覧</h1>
+  <button>全て消す</button>
+ </div>
+ 
   <ul id="planAll">
     <?php foreach ($plan as $p): ?>
       <li id="<?= h($p->id);?>" data-id="<?= h($p->id); ?>">
@@ -29,7 +33,7 @@ $plan = $planAll->allPlan();
       </li>
     <?php endforeach; ?>
     <li id="addingPlan" data-id="">
-      <input type="checkbox" class="update <?php if ($p->state === '1') {echo 'checked';}?>">
+      <input type="checkbox" class="update" <?php if ($p->state === '1') {echo 'checked';}?>>
       <p class="title <?php if ($p->state === '1') {echo 'finished';}?>"></p>
       <div class="cross">x</div>
     <li>

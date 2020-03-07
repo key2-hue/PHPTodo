@@ -45,4 +45,16 @@ $(function() {
     });
     return false;
   });
+
+  $('.planList > button').on('click', function() {
+    if(confirm('are you sure?')) {
+      $.post('ajax.php', {
+        way: 'deleteAll',
+        token: $('#token').val()
+      }, function() {
+        $('#planAll > li').fadeOut(1000);
+        
+      });
+    }
+  });
 });
