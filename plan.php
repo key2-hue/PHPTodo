@@ -54,7 +54,7 @@ class Plan {
     if(!isset($_POST['todo']) || $_POST['todo'] === '') {
       throw new \Exception('IDがセットされていません');
     }
-
+    
     $sql = "insert into todos (title, state) values (:title, :state)";
     $create = $this->pdo->prepare($sql);
     $create->bindValue(':title', $_POST['todo'], \PDO::PARAM_STR);

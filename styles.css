@@ -28,3 +28,7 @@ p {
 #addingPlan {
   display: none;
 }
+
+.update, .cross {
+  cursor: pointer;
+}

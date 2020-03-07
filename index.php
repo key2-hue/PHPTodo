@@ -35,8 +35,8 @@ $plan = $planAll->allPlan();
     <?php endforeach; ?>
     </div>
     <li id="addingPlan" data-id="" class="all">
-      <input type="checkbox" class="update" <?php if ($p->state === '1') {echo 'checked';}?>>
-      <p class="title <?php if ($p->state === '1') {echo 'finished';}?>"></p>
+      <input type="checkbox" class="update">
+      <p class="title"></p>
       <div class="cross">x</div>
     <li>
     <ul id="finalPlan">

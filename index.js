@@ -2,7 +2,7 @@ $(function() {
   
   $('.update').on('click', function() {
     var id = $(this).parents('li').attr('id');
-    console.log(id);
+    console.log('aaa');
     $.post('ajax.php', {
       id: id,
       way: 'update',
@@ -32,18 +32,20 @@ $(function() {
   });
 
   $('#form').on('submit', function() {
-    
     var todo = $('#text').val();
+    console.log(todo);
     $.post('ajax.php', {
       todo: todo,
       way: 'create',
       token: $('#token').val()
     }, function(res) {
-      var li = $('#addingPlan').clone();
-      li.attr('id', res.id).data('id', res.id).find('.title').text(todo);
-      console.log(res.id);
-      $('.todoNow').append(li.fadeIn());
-      $('#text').val('').focus();
+      if(res.id !== undefined ) {
+        var li = $('#addingPlan').clone();
+        li.attr('id', res.id).data('id', res.id).find('.title').text(todo);
+        console.log(res.id);
+        $('.todoNow').append(li.fadeIn());
+        $('#text').val('').focus();
+      }
     });
     return false;
   });
