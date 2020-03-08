@@ -29,7 +29,7 @@ $undone = $planAll->undone();
   <button>全て消す</button>
  </div>
   <ul id="planAll">
-    <div class="todoNow">
+    <div class="doneNow">
       終わったタスク
       <?php foreach ($done as $p): ?>
         <li id="<?= h($p->id);?>" data-id="<?= h($p->id); ?>" class="all">

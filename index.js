@@ -10,9 +10,11 @@ $(function() {
     }, function(res) {
       if(res.state === '1') {
         $('#' + id).find('.title').addClass('finished');
+        $('.doneNow').append($('#' + id));
         console.log('a');
       } else {
         $('#' + id).find('.title').removeClass('finished');
+        $('.todoNow').append($('#' + id));
         console.log('b');
       }
     })
@@ -61,8 +63,8 @@ $(function() {
         way: 'deleteAll',
         token: $('#token').val()
       }, function() {
-        $('.todoNow > li').fadeOut(1000, function() {
-          $('.todoNow > li').remove(1000);
+        $('.all').fadeOut(1000, function() {
+          $('.all').remove(1000);
         });
       });
     }
