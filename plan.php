@@ -3,7 +3,7 @@
 namespace MyPlan;
 
 class Plan {
-  private $pdo;
+  public $pdo;
 
   public function __construct() {
     $this->token();
@@ -102,14 +102,29 @@ class Plan {
 
     $this->pdo->commit();
 
+
     return [
       'state' => $state
     ];
   }
 
+  
+
   public function allPlan() {
     $sql = 'SELECT * FROM todos ORDER BY id asc';
     $plans = $this->pdo->query($sql);
     return $plans->fetchAll(\PDO::FETCH_OBJ);
+  }
+
+  public function done() {
+    $sql = "select * from todos where state = 1";
+    $done = $this->pdo->query($sql);
+    return $done->fetchAll(\PDO::FETCH_OBJ);
+  }
+
+  public function undone() {
+    $sql = "select * from todos where state = 0";
+    $undone = $this->pdo->query($sql);
+    return $undone->fetchAll(\PDO::FETCH_OBJ);
   }
 }

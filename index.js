@@ -1,7 +1,7 @@
 $(function() {
   
   $('.all > .update').on('click', function() {
-    var id = $(this).parents('li').attr('id');
+    var id = $(this).parents('li').data('id');
     console.log('aaa');
     $.post('ajax.php', {
       id: id,
@@ -42,11 +42,15 @@ $(function() {
     }, function(res) {
       if(res.id !== undefined ) {
         var li = $('#addingPlan').clone();
-        li.attr('id', res.id).data('id', res.id).find('.title').text(todo);
+        li.attr('id', res.id);
+        li.attr('data-id', res.id).find('.title').text(todo);
+        console.log(li);
         console.log(res.id);
         $('.todoNow').append(li.fadeIn());
-        $('#text').val('').focus();
+      } else {
+        $('.errorSentence').text('文字を入力してください').fadeOut(2000);
       }
+      $('#text').val('').focus();
     });
     return false;
   });
