@@ -31,6 +31,7 @@ $undone = $planAll->undone();
     <input type="text" placeholder="予定を入力してください" id="text">
     <input type="submit" value="送信する">
   </form>
+  <p class="errorSentence"></p>
  </div>
  <div class="planRight">
   <ul id="planAll">
@@ -61,7 +62,6 @@ $undone = $planAll->undone();
       <p class="title"></p>
       <div class="cross">消去する</div>
     <li>
-    <p class="errorSentence"></p>
   </ul>
   <input type="hidden" id="token" value="<?= h($_SESSION['token']);?>">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>

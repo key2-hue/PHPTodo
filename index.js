@@ -1,4 +1,8 @@
 $(function() {
+
+  $('#addingPlan > .update').on('click' ,function() {
+    console.log('aaa');
+  });
   
   $('.all > .update').on('click', function() {
     var id = $(this).parents('li').data('id');
@@ -36,7 +40,6 @@ $(function() {
 
   $('#form').on('submit', function() {
     var todo = $('#text').val();
-    console.log(todo);
     $.post('ajax.php', {
       todo: todo,
       way: 'create',
@@ -44,11 +47,12 @@ $(function() {
     }, function(res) {
       if(res.id !== undefined ) {
         var li = $('#addingPlan').clone();
-        var reset = li.attr('id', Number(res.id));
         li.attr('data-id', Number(res.id)).find('.title').text(todo);
         console.log(Number(res.id));
+        console.log(li)
         $('.todoNow').append(li.fadeIn());
       } else {
+        $('.errorSentence').css({'display':'block'});
         $('.errorSentence').text('文字を入力してください').fadeOut(2000);
       }
       $('#text').val('').focus();
