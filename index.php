@@ -39,8 +39,7 @@ $plan = $planAll->allPlan();
       <p class="title"></p>
       <div class="cross">x</div>
     <li>
-    <ul id="finalPlan">
-    </ul>
+   
   </ul>
   <form action="" id="form">
     <input type="text" placeholder="予定を入力してください" id="text">

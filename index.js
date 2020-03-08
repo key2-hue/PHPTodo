@@ -1,6 +1,6 @@
 $(function() {
   
-  $('.update').on('click', function() {
+  $('.all > .update').on('click', function() {
     var id = $(this).parents('li').attr('id');
     console.log('aaa');
     $.post('ajax.php', {
@@ -19,7 +19,8 @@ $(function() {
   })
 
   $('.cross').on('click', function() {
-    var id = $(this).parents('li').data('id');
+    var id = $(this).parents('li').attr('id');
+    console.log(id);
     if(confirm('are you sure?')) {
       $.post('ajax.php', {
         id: id,
@@ -51,11 +52,11 @@ $(function() {
   });
 
   $('.planList > button').on('click', function() {
-    if(confirm('are you sure?')) {
+    if(confirm('全て消して大丈夫ですか？')) {
       $.post('ajax.php', {
         way: 'deleteAll',
         token: $('#token').val()
-      }, function(res) {
+      }, function() {
         $('.todoNow > li').fadeOut(1000, function() {
           $('.todoNow > li').remove(1000);
         });
