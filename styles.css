@@ -4,8 +4,8 @@ body {
 }
 
 #plans {
-  width: 300px;
-  margin: 40px auto 0; 
+  display: flex;
+  justify-content: space-around;
 }
 
 ul {
@@ -29,8 +29,32 @@ p {
   display: none;
 }
 
+.container {
+  display: flex;
+  justify-content: space-evenly;
+  width: 400px;
+  margin: 40px auto 0; 
+}
+
+.all {
+  margin-top: 10px;
+}
+
+
+
 .update, .cross {
   cursor: pointer;
+}
+
+.cross {
+  background-color: skyblue;
+  margin-left: 10px;
+  border-radius: 10px;
+  font-size: 12px;
+  width: 60px;
+  height: 25px;
+  text-align: center;
+  line-height: 25px;
 }
 
 .errorSentence {

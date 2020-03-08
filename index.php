@@ -27,15 +27,21 @@ $undone = $planAll->undone();
  <div class="planList">
   <h1>予定一覧</h1>
   <button>全て消す</button>
+  <form action="" id="form">
+    <input type="text" placeholder="予定を入力してください" id="text">
+    <input type="submit" value="送信する">
+  </form>
  </div>
+ <div class="planRight">
   <ul id="planAll">
+    <div class="container">
     <div class="doneNow">
       終わったタスク
       <?php foreach ($done as $p): ?>
         <li id="<?= h($p->id);?>" data-id="<?= h($p->id); ?>" class="all">
           <input type="checkbox" class="update" <?php if ($p->state === '1') {echo 'checked';}?>>
           <p class="title <?php if ($p->state === '1') {echo 'finished';}?>"><?= h($p->title); ?></p>
-          <div class="cross">x</div>
+          <div class="cross">消去する</div>
         </li>
       <?php endforeach; ?>
     </div>
@@ -45,24 +51,22 @@ $undone = $planAll->undone();
         <li id="<?= h($p->id);?>" data-id="<?= h($p->id); ?>" class="all">
           <input type="checkbox" class="update" <?php if ($p->state === '1') {echo 'checked';}?>>
           <p class="title <?php if ($p->state === '1') {echo 'finished';}?>"><?= h($p->title); ?></p>
-          <div class="cross">x</div>
+          <div class="cross">消去する</div>
         </li>
       <?php endforeach; ?>
+    </div>
     </div>
     <li id="addingPlan" data-id="" class="all">
       <input type="checkbox" class="update">
       <p class="title"></p>
-      <div class="cross">x</div>
+      <div class="cross">消去する</div>
     <li>
     <p class="errorSentence"></p>
   </ul>
-  <form action="" id="form">
-    <input type="text" placeholder="予定を入力してください" id="text">
-    <input type="submit" value="送信する">
-  </form>
   <input type="hidden" id="token" value="<?= h($_SESSION['token']);?>">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
   <script src="index.js"></script>
+ </div>
  </div>
 </body>
 </html>
